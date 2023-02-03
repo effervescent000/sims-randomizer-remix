@@ -73,3 +73,20 @@ export function validateEmail(email: unknown): email is string {
 export function humanizeKey(key: string) {
   return key;
 }
+
+export function randomFromWeights(options: { [key: number]: number }): number {
+  const weightsArray = Object.entries(options).map(([key, value]) => ({
+    id: +key,
+    weight: value,
+  }));
+  let total = Object.values(options).reduce((acc, cur) => acc + cur, 0);
+  const threshold = Math.random() * total;
+  total = 0;
+  for (let i = 0; i < weightsArray.length; i++) {
+    total += weightsArray[i].weight;
+    if (total >= threshold) return weightsArray[i].id;
+  }
+  const finalWeight = weightsArray.at(-1);
+  if (finalWeight) return finalWeight.id;
+  return -1;
+}
