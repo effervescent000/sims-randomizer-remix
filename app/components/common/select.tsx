@@ -1,23 +1,19 @@
 import React, { useState } from "react";
-import type { GenericObject } from "~/types/interfaces";
+import type { ISelectOptions } from "~/types/interfaces";
 
 function Select({
   label,
   options,
+  fieldName,
 }: {
   label?: string;
-  options: GenericObject[];
+  options: ISelectOptions[];
+  fieldName: string;
 }) {
-  const [value, setValue] = useState("");
-
-  function onChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    setValue(event.target.value);
-  }
-
   return (
     <div>
       <span>{label}</span>
-      <select value={value} onChange={onChange}>
+      <select name={fieldName}>
         {options.map(({ name: optName, value: optValue }) => (
           <option value={optValue} key={optValue}>
             {optName}
