@@ -7,7 +7,7 @@ function Select({
 }: {
   label?: string;
   options: ISelectOptions[];
-  fieldName: string;
+  fieldName?: string;
 }) {
   return (
     <div>
