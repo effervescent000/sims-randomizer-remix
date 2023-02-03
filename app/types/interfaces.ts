@@ -3,6 +3,10 @@ export interface GenericObject {
 }
 
 export interface ITrait {
-  key: string;
-  conflicts?: string[];
+  [key: string]: { conflicts?: string[]; requires?: string[] };
+}
+
+export interface ISelectOptions {
+  name: string;
+  value: string;
 }
