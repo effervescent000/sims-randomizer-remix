@@ -14,11 +14,11 @@ function InheritPanel() {
       <PanelLayout>
         <div className="flex">
           <input type="hidden" name="_action" value={FORM_CONSTANTS.inherit} />
-          <SimInput simId={1} label="Parent 1" />
-          <SimInput simId={2} label="Parent 2" />
+          <SimInput simId={1} label="Parent 1" context="inherit" />
+          <SimInput simId={2} label="Parent 2" context="inherit" />
         </div>
         <Button>Generate</Button>
-        <SimOutput label="Output Sim" simData={data} />
+        <SimOutput label="Output Sim" simData={data} context="inherit" />
       </PanelLayout>
     </Form>
   );

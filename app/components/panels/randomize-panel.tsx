@@ -11,9 +11,9 @@ function RandomizePanel() {
     <Form method="post">
       <PanelLayout>
         <input type="hidden" name="_action" value={FORM_CONSTANTS.roll} />
-        <SimInput label="Starting Sim" />
+        <SimInput label="Starting Sim" context="roll" />
         <Button>Roll</Button>
-        <SimOutput label="Output" simData={data} />
+        <SimOutput label="Output" simData={data} context="roll" />
       </PanelLayout>
     </Form>
   );

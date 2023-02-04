@@ -7,26 +7,38 @@ import {
   traitsKeyValuePairs,
 } from "~/constants/sim-data";
 
-function SimInput({ simId = 1, label }: { simId?: number; label?: string }) {
+function SimInput({
+  simId = 1,
+  label,
+  context,
+}: {
+  simId?: number;
+  label?: string;
+  context: string;
+}) {
+  const simKey = `sim-${simId}`;
   return (
     <div>
       {label && <span>{label}</span>}
       <Select
         label="Age"
         options={AGES.map((age, index) => ({ name: age, value: `${index}` }))}
-        fieldName={`sim-${simId}.age`}
+        fieldName={`${simKey}.age`}
+        cyValue={`${context}-${simKey}.age`}
       />
       <Select
         label="Toddler trait"
         options={TODDLER_TRAITS.map(({ key }) => ({ name: key, value: key }))}
-        fieldName={`sim-${simId}.toddlerTrait`}
+        fieldName={`${simKey}.toddlerTrait`}
+        cyValue={`${context}-${simKey}.toddlerTrait`}
       />
       {_.range(3).map((_n, i) => (
         <Select
           label="Trait"
           options={traitsKeyValuePairs}
           key={i}
-          fieldName={`sim-${simId}.trait`}
+          fieldName={`${simKey}.trait`}
+          cyValue={`${context}-${simKey}.trait`}
         />
       ))}
     </div>
