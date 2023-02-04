@@ -12,7 +12,7 @@ function RandomizePanel() {
       <PanelLayout>
         <input type="hidden" name="_action" value={FORM_CONSTANTS.roll} />
         <SimInput label="Starting Sim" context="roll" />
-        <Button>Roll</Button>
+        <Button cyValue={`${FORM_CONSTANTS.roll}-btn`}>Roll</Button>
         <SimOutput label="Output" simData={data} context="roll" />
       </PanelLayout>
     </Form>
