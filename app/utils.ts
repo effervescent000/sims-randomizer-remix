@@ -110,16 +110,18 @@ export function makeSimFromBody({
   simId: number;
   body: FormData;
 }) {
+  const traits = body
+    .getAll(`sim-${simId}.trait`)
+    .filter((item) => item !== null && item !== "-1")
+    .map((item) => +`${item}`);
+  console.log(traits);
   return {
     age: getAsNumberOrUndefined({ body, queryString: `sim-${simId}.age` }),
     toddlerTrait: getAsNumberOrUndefined({
       body,
       queryString: `sim-${simId}.toddlerTrait`,
     }),
-    traits: body
-      .getAll(`sim-${simId}.trait`)
-      .filter((item) => item !== null)
-      .map((item) => +`${item}`),
+    traits,
     aspiration: getAsNumberOrUndefined({
       body,
       queryString: `sim-${simId}.aspiration`,

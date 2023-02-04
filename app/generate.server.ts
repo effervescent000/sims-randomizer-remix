@@ -32,10 +32,16 @@ export function makeChild({
 
 export function rollSim({ sim }: { sim: ISim }): ISim {
   const traits = sim.traits ? filterOutNoTrait(sim.traits) : [];
-  const allTraitList = Object.keys(ETraits);
+  const allTraitList = Object.values(ETraits)
+    .filter((key) => !isNaN(+key))
+    .map((item) => +item);
+  console.log(allTraitList);
+
+  const selectedIndex = Math.floor(Math.random() * allTraitList.length);
+  console.log(selectedIndex);
 
   while (traits.length < 3) {
-    traits.push(+allTraitList[Math.floor(Math.random() * allTraitList.length)]);
+    traits.push(+allTraitList[selectedIndex]);
   }
 
   return { ...sim, traits };
