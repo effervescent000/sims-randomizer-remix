@@ -35,10 +35,8 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
   const allTraitList = Object.values(ETraits)
     .filter((key) => !isNaN(+key))
     .map((item) => +item);
-  console.log(allTraitList);
 
   const selectedIndex = Math.floor(Math.random() * allTraitList.length);
-  console.log(selectedIndex);
 
   while (traits.length < 3) {
     traits.push(+allTraitList[selectedIndex]);
