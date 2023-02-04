@@ -90,3 +90,40 @@ export function randomFromWeights(options: { [key: number]: number }): number {
   if (finalWeight) return finalWeight.id;
   return -1;
 }
+
+function getAsNumberOrUndefined({
+  body,
+  queryString,
+}: {
+  body: FormData;
+  queryString: string;
+}) {
+  const result = body.get(queryString);
+  if (result) return +`${result}`;
+  return undefined;
+}
+
+export function makeSimFromBody({
+  simId,
+  body,
+}: {
+  simId: number;
+  body: FormData;
+}) {
+  return {
+    age: getAsNumberOrUndefined({ body, queryString: `sim-${simId}.age` }),
+    toddlerTrait: getAsNumberOrUndefined({
+      body,
+      queryString: `sim-${simId}.toddlerTrait`,
+    }),
+    traits: body.getAll(`sim-${simId}.trait`).map((item) => +`${item}`),
+    aspiration: getAsNumberOrUndefined({
+      body,
+      queryString: `sim-${simId}.aspiration`,
+    }),
+    career: getAsNumberOrUndefined({
+      body,
+      queryString: `sim-${simId}.career`,
+    }),
+  };
+}
