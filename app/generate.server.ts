@@ -1,5 +1,7 @@
 import type { ISim } from "./types/interfaces";
+import { ETraits } from "./types/interfaces";
 import { EAges } from "./types/interfaces";
+
 import { randomFromWeights } from "./utils";
 
 export function makeChild({
@@ -16,14 +18,25 @@ export function makeChild({
     (acc, cur) => ({ ...acc, [cur]: (acc[cur] || 0) + 2 }),
     { [-1]: 1 } as { [key: number]: number }
   );
-  let counter = 0;
+
   const newTraits = [] as number[];
-  while (counter < 3) {
+  while (newTraits.length < 3) {
     newTraits.push(randomFromWeights(combinedWeightedTraits));
-    counter++;
   }
+
   return {
     age: existingChild ? existingChild.age || EAges.Adult : EAges.Adult,
     traits: newTraits,
   };
+}
+
+export function rollSim({ sim }: { sim: ISim }): ISim {
+  const traits = sim.traits || [];
+  const allTraitList = Object.values(ETraits);
+
+  while (traits.length < 3) {
+    traits.push(+allTraitList[Math.floor(Math.random() * allTraitList.length)]);
+  }
+
+  return { ...sim, traits };
 }

@@ -1,4 +1,5 @@
 import { Form, useActionData } from "@remix-run/react";
+import { FORM_CONSTANTS } from "~/constants/constants";
 
 import Button from "../common/button";
 
@@ -12,7 +13,7 @@ function InheritPanel() {
     <Form method="post">
       <PanelLayout>
         <div className="flex">
-          <input type="hidden" name="_action" value="gen_child" />
+          <input type="hidden" name="_action" value={FORM_CONSTANTS.inherit} />
           <SimInput simId={1} label="Parent 1" />
           <SimInput simId={2} label="Parent 2" />
         </div>
