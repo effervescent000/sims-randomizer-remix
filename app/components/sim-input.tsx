@@ -26,7 +26,7 @@ function SimInput({ simId, label }: { simId: number; label?: string }) {
           label="Trait"
           options={traitsKeyValuePairs}
           key={i}
-          fieldName={`sim-${simId}.trait-${i}`}
+          fieldName={`sim-${simId}.trait`}
         />
       ))}
     </div>

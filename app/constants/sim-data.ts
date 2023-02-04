@@ -1,11 +1,5 @@
-import {
-  EAges,
-  EPacks,
-  ETraits,
-  GenericObject,
-  ISelectOptions,
-  ITrait,
-} from "~/types/interfaces";
+import type { GenericObject, ISelectOptions, ITrait } from "~/types/interfaces";
+import { EAges, EPacks, ETraits } from "~/types/interfaces";
 import { humanizeKey } from "~/utils";
 
 export const AGES = ["Baby", "Toddler", "Child", "Teen", "YA+"];
@@ -215,6 +209,6 @@ export const TRAITS: { [key: number]: ITrait } = {
 };
 
 export const traitsKeyValuePairs = Object.keys(TRAITS).reduce(
-  (acc, key) => [...acc, { name: humanizeKey(key), value: key }],
+  (acc, key) => [...acc, { name: humanizeKey(ETraits[+key]), value: key }],
   [] as ISelectOptions[]
 );

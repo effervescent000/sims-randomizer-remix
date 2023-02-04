@@ -1,5 +1,7 @@
 import _ from "lodash";
 
+import type { ISim } from "~/types/interfaces";
+
 import {
   AGES,
   TODDLER_TRAITS,
@@ -7,7 +9,11 @@ import {
 } from "~/constants/sim-data";
 import Select from "./common/select";
 
-function SimOutput({ label }: { label?: string }) {
+function SimOutput({ label, simData }: { label?: string; simData?: ISim }) {
+  const traits = simData && simData.traits ? simData.traits : [];
+  while (traits.length < 3) {
+    traits.push(-1);
+  }
   return (
     <div>
       {label && <span>{label}</span>}
@@ -20,7 +26,12 @@ function SimOutput({ label }: { label?: string }) {
         options={TODDLER_TRAITS.map(({ key }) => ({ name: key, value: key }))}
       />
       {_.range(3).map((_n, i) => (
-        <Select label="Trait" options={traitsKeyValuePairs} key={i} />
+        <Select
+          label="Trait"
+          options={traitsKeyValuePairs}
+          key={i}
+          value={`${traits[i]}`}
+        />
       ))}
     </div>
   );
