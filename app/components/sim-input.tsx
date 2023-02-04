@@ -7,7 +7,7 @@ import {
   traitsKeyValuePairs,
 } from "~/constants/sim-data";
 
-function SimInput({ simId, label }: { simId: number; label?: string }) {
+function SimInput({ simId = 1, label }: { simId?: number; label?: string }) {
   return (
     <div>
       {label && <span>{label}</span>}
