@@ -14,11 +14,11 @@ export interface ISelectOptions {
 }
 
 export interface ISim {
-  age: number;
-  toddlerTrait?: string;
-  traits?: string[];
-  aspiration?: string;
-  career?: string;
+  age?: number;
+  toddlerTrait?: EToddlerTraits;
+  traits?: ETraits[];
+  aspiration?: number;
+  career?: number;
 }
 
 // ENUMS
@@ -44,6 +44,17 @@ export enum EAges {
   Child,
   Teen,
   Adult,
+}
+
+export enum EToddlerTraits {
+  Angelic,
+  Charmer,
+  Clingy,
+  Fussy,
+  independent,
+  inquisitive,
+  Silly,
+  Wild,
 }
 
 export enum ETraits {
