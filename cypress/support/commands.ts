@@ -103,9 +103,9 @@ function visitAndCheck(url: string, waitTime: number = 1000) {
 function selectPartialTraits(search: string) {
   const traits = cy.get(`[data-cy="${search}.trait"]`);
   traits.should("have.length", 3);
-  for (let i = 0; i < 2; i++) {
-    traits.eq(i).select((i + 1) * 2);
-  }
+  traits.each((el, index) => {
+    if (index < 2) cy.wrap(el).select((index + 1) * 2);
+  });
 }
 
 Cypress.Commands.add("login", login);
