@@ -116,7 +116,10 @@ export function makeSimFromBody({
       body,
       queryString: `sim-${simId}.toddlerTrait`,
     }),
-    traits: body.getAll(`sim-${simId}.trait`).map((item) => +`${item}`),
+    traits: body
+      .getAll(`sim-${simId}.trait`)
+      .filter((item) => item !== null)
+      .map((item) => +`${item}`),
     aspiration: getAsNumberOrUndefined({
       body,
       queryString: `sim-${simId}.aspiration`,
@@ -129,5 +132,5 @@ export function makeSimFromBody({
 }
 
 export function filterOutNoTrait(traitList: number[]) {
-  return traitList.filter((trait) => trait !== -1);
+  return traitList.filter((trait) => trait !== -1 && trait !== null);
 }
