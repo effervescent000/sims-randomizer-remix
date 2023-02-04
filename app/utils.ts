@@ -127,3 +127,7 @@ export function makeSimFromBody({
     }),
   };
 }
+
+export function filterOutNoTrait(traitList: number[]) {
+  return traitList.filter((trait) => trait !== -1);
+}

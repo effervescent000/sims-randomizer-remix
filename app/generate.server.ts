@@ -2,7 +2,7 @@ import type { ISim } from "./types/interfaces";
 import { ETraits } from "./types/interfaces";
 import { EAges } from "./types/interfaces";
 
-import { randomFromWeights } from "./utils";
+import { filterOutNoTrait, randomFromWeights } from "./utils";
 
 export function makeChild({
   sims: { leftParent, rightParent, existingChild },
@@ -31,7 +31,7 @@ export function makeChild({
 }
 
 export function rollSim({ sim }: { sim: ISim }): ISim {
-  const traits = sim.traits || [];
+  const traits = sim.traits ? filterOutNoTrait(sim.traits) : [];
   const allTraitList = Object.values(ETraits);
 
   while (traits.length < 3) {
