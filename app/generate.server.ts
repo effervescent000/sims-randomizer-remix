@@ -2,6 +2,8 @@ import type { ISim } from "./types/interfaces";
 import { ETraits } from "./types/interfaces";
 import { EAges } from "./types/interfaces";
 
+import { TRAITS } from "./constants/sim-data";
+
 import { filterOutNoTrait, randomFromWeights } from "./utils";
 
 export function makeChild({
@@ -35,11 +37,22 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
   const allTraitList = Object.values(ETraits)
     .filter((key) => !isNaN(+key))
     .map((item) => +item);
-
-  const selectedIndex = Math.floor(Math.random() * allTraitList.length);
+  console.log(allTraitList);
 
   while (traits.length < 3) {
-    traits.push(+allTraitList[selectedIndex]);
+    const selectedIndex = Math.floor(Math.random() * allTraitList.length);
+    console.log(selectedIndex);
+
+    const newTrait = +allTraitList[selectedIndex];
+    const traitData = TRAITS[newTrait];
+    let valid = true;
+
+    traits.forEach((existingTrait) => {
+      if (TRAITS[existingTrait].conflicts?.includes(newTrait)) {
+        valid = false;
+      }
+    });
+    if (valid) traits.push(newTrait);
   }
 
   return { ...sim, traits };
