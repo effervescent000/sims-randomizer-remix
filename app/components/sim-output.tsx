@@ -9,7 +9,15 @@ import {
 } from "~/constants/sim-data";
 import Select from "./common/select";
 
-function SimOutput({ label, simData }: { label?: string; simData?: ISim }) {
+function SimOutput({
+  label,
+  simData,
+  context,
+}: {
+  label?: string;
+  simData?: ISim;
+  context: string;
+}) {
   const traits = simData && simData.traits ? simData.traits : [];
   while (traits.length < 3) {
     traits.push(-1);
@@ -20,10 +28,12 @@ function SimOutput({ label, simData }: { label?: string; simData?: ISim }) {
       <Select
         label="Age"
         options={AGES.map((age, index) => ({ name: age, value: `${index}` }))}
+        cyValue={`${context}-out.age`}
       />
       <Select
         label="Toddler trait"
         options={TODDLER_TRAITS.map(({ key }) => ({ name: key, value: key }))}
+        cyValue={`${context}-out.toddlerTrait`}
       />
       {_.range(3).map((_n, i) => (
         <Select
@@ -31,6 +41,7 @@ function SimOutput({ label, simData }: { label?: string; simData?: ISim }) {
           options={traitsKeyValuePairs}
           key={i}
           value={`${traits[i]}`}
+          cyValue={`${context}-out.trait`}
         />
       ))}
     </div>

@@ -1,4 +1,5 @@
 import { Form, useActionData } from "@remix-run/react";
+import { FORM_CONSTANTS } from "~/constants/constants";
 import Button from "../common/button";
 import SimInput from "../sim-input";
 import SimOutput from "../sim-output";
@@ -9,10 +10,10 @@ function RandomizePanel() {
   return (
     <Form method="post">
       <PanelLayout>
-        <input type="hidden" name="_action" value="roll_sim" />
-        <SimInput label="Starting Sim" />
-        <Button>Roll</Button>
-        <SimOutput label="Output" simData={data} />
+        <input type="hidden" name="_action" value={FORM_CONSTANTS.roll} />
+        <SimInput label="Starting Sim" context="roll" />
+        <Button cyValue={`${FORM_CONSTANTS.roll}-btn`}>Roll</Button>
+        <SimOutput label="Output" simData={data} context="roll" />
       </PanelLayout>
     </Form>
   );

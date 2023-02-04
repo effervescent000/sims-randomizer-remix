@@ -210,5 +210,5 @@ export const TRAITS: { [key: number]: ITrait } = {
 
 export const traitsKeyValuePairs = Object.keys(TRAITS).reduce(
   (acc, key) => [...acc, { name: humanizeKey(ETraits[+key]), value: key }],
-  [] as ISelectOptions[]
+  [{ name: "---", value: "-1" }] as ISelectOptions[]
 );

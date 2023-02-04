@@ -38,6 +38,16 @@ declare global {
        *    cy.visitAndCheck('/', 500)
        */
       visitAndCheck: typeof visitAndCheck;
+
+      /**
+       * Searches for traits based on passed key.
+       *
+       * @returns {typeof selectPartialTraits}
+       * @memberof Chainable
+       * @example
+       *  cy.searchPartialTraits("roll-sim-1")
+       */
+      selectPartialTraits: typeof selectPartialTraits;
     }
   }
 }
@@ -90,6 +100,15 @@ function visitAndCheck(url: string, waitTime: number = 1000) {
   cy.location("pathname").should("contain", url).wait(waitTime);
 }
 
+function selectPartialTraits(search: string) {
+  const traits = cy.get(`[data-cy="${search}.trait"]`);
+  traits.should("have.length", 3);
+  traits.each((el, index) => {
+    if (index < 2) cy.wrap(el).select((index + 1) * 2);
+  });
+}
+
 Cypress.Commands.add("login", login);
 Cypress.Commands.add("cleanupUser", cleanupUser);
 Cypress.Commands.add("visitAndCheck", visitAndCheck);
+Cypress.Commands.add("selectPartialTraits", selectPartialTraits);
