@@ -1,4 +1,5 @@
 import type {
+  GenericNumberedObject,
   GenericObject,
   IAspiration,
   ICareer,
@@ -27,7 +28,16 @@ export const TRAITS: { [key: number]: ITrait } = {
   [ETraits.Adventurous]: {
     requires: [EPacks.SnowyEscape],
   },
-  [ETraits.Active]: { conflicts: [ETraits.Lazy] },
+  [ETraits.Active]: {
+    conflicts: [ETraits.Lazy],
+    aspirationWeights: [
+      {
+        key: EAspirations.Bodybuilder,
+        value: 2,
+      },
+      { key: EAspirations.ExtremeSportsEnthusiast, value: 1 },
+    ],
+  },
   [ETraits.Ambitious]: {
     conflicts: [ETraits.Lazy, ETraits.Freegan],
     minAge: EAges.Adult,
@@ -132,6 +142,7 @@ export const TRAITS: { [key: number]: ITrait } = {
   },
   [ETraits.LovesOutdoors]: {
     conflicts: [ETraits.Squeamish],
+    aspirationWeights: [{ key: EAspirations.OutdoorEnthusiast, value: 3 }],
   },
   [ETraits.Loyal]: { minAge: EAges.Teen, conflicts: [ETraits.Noncommittal] },
   [ETraits.Maker]: {
@@ -186,6 +197,7 @@ export const TRAITS: { [key: number]: ITrait } = {
   },
   [ETraits.SelfAbsorbed]: {
     requires: [EPacks.GetFamous],
+    aspirationWeights: [{ key: EAspirations.WorldFamousCelebrity, value: 2 }],
   },
   [ETraits.SelfAssured]: {},
   [ETraits.Slob]: {
@@ -273,6 +285,11 @@ export const ASPIRATIONS: { [key: number]: IAspiration } = {
   [EAspirations.ZenGuru]: { requires: [EPacks.SpaDay] },
 };
 
+export const emptyAspirationWeights = Object.keys(ASPIRATIONS).reduce(
+  (acc, cur) => ({ ...acc, [cur]: 0 }),
+  {} as GenericNumberedObject
+);
+
 export const aspirationsKeyValuePairs = Object.keys(ASPIRATIONS).reduce(
   (acc, key) => [...acc, { name: humanizeKey(EAspirations[+key]), value: key }],
   [{ name: "---", value: "-1" }] as ISelectOptions[]
@@ -342,10 +359,7 @@ export const CAREERS: { [key: number]: ICareer } = {
 
 export const careersKeyValuePairs = Object.keys(CAREERS)
   .reduce(
-    (acc, key) => [
-      ...acc,
-      { name: humanizeKey(EAspirations[+key]), value: key },
-    ],
+    (acc, key) => [...acc, { name: humanizeKey(ECareers[+key]), value: key }],
     [{ name: "---", value: "-1" }] as ISelectOptions[]
   )
   .sort();
