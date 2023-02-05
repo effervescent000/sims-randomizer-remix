@@ -1,8 +1,9 @@
-import { EAspirations, ECareers, ISim } from "./types/interfaces";
+import type { ISim } from "./types/interfaces";
+import { EAspirations, ECareers } from "./types/interfaces";
 import { ETraits } from "./types/interfaces";
 import { EAges } from "./types/interfaces";
 
-import { TRAITS } from "./constants/sim-data";
+import { emptyAspirationWeights, TRAITS } from "./constants/sim-data";
 
 import { filterOutNoTrait, getEnumList, randomFromWeights } from "./utils";
 
@@ -61,10 +62,8 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
   }
   mutatedSim.traits = traits;
 
-  const allAspirationList = getEnumList(EAspirations);
   if (mutatedSim.aspiration === -1) {
-    const selectedIndex = Math.floor(Math.random() * allAspirationList.length);
-    mutatedSim.aspiration = allAspirationList[selectedIndex];
+    mutatedSim.aspiration = rollAspirationFromTraits(mutatedSim.traits);
   }
 
   const allCareerList = getEnumList(ECareers);
@@ -74,4 +73,23 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
   }
 
   return mutatedSim;
+}
+
+function rollAspirationFromTraits(traits: number[]) {
+  const weights = { ...emptyAspirationWeights };
+  traits.forEach((trait) => {
+    const traitData = TRAITS[trait];
+    traitData.aspirationWeights?.forEach(
+      (weight) => (weights[weight.key] += weight.value)
+    );
+  });
+  const weightSum = Object.values(weights).reduce((acc, cur) => acc + cur, 0);
+  weights[-1] = Math.ceil(weightSum * 0.15);
+  const result = randomFromWeights(weights);
+  if (result === -1) {
+    const allAspirationList = getEnumList(EAspirations);
+    const selectedIndex = Math.floor(Math.random() * allAspirationList.length);
+    return allAspirationList[selectedIndex];
+  }
+  return result;
 }

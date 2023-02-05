@@ -2,10 +2,15 @@ export interface GenericObject {
   [key: string]: string;
 }
 
+export interface GenericNumberedObject {
+  [key: number]: number;
+}
+
 export interface ITrait {
   conflicts?: ETraits[];
   requires?: EPacks[];
   minAge?: EAges;
+  aspirationWeights?: { key: EAspirations; value: number }[];
 }
 
 export interface IAspiration {
