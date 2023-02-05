@@ -39,7 +39,10 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
   const allTraitList = getEnumList(ETraits);
   let filteredTraits = allTraitList.filter((key) => {
     const trait = TRAITS[key];
-    return (trait.minAge && trait.minAge <= sim.age) || !trait.minAge;
+    return (
+      ((trait.minAge && trait.minAge <= sim.age) || !trait.minAge) &&
+      !traits.includes(key)
+    );
   });
 
   while (traits.length < 3) {
