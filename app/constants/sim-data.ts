@@ -10,6 +10,7 @@ import { ECareers } from "~/types/interfaces";
 import { EAspirations } from "~/types/interfaces";
 import { EAges, EPacks, ETraits } from "~/types/interfaces";
 import { humanizeKey } from "~/utils";
+import { WEIGHTS } from "./constants";
 
 export const AGES = ["Baby", "Toddler", "Child", "Teen", "YA+"];
 
@@ -197,7 +198,9 @@ export const TRAITS: { [key: number]: ITrait } = {
   },
   [ETraits.SelfAbsorbed]: {
     requires: [EPacks.GetFamous],
-    aspirationWeights: [{ key: EAspirations.WorldFamousCelebrity, value: 2 }],
+    aspirationWeights: [
+      { key: EAspirations.WorldFamousCelebrity, value: WEIGHTS.MID },
+    ],
   },
   [ETraits.SelfAssured]: {},
   [ETraits.Slob]: {
@@ -206,6 +209,12 @@ export const TRAITS: { [key: number]: ITrait } = {
   [ETraits.Snob]: {
     conflicts: [ETraits.Childish, ETraits.Freegan, ETraits.Goofball],
     minAge: EAges.Teen,
+    aspirationWeights: [
+      { key: EAspirations.BestsellingAuthor, value: WEIGHTS.LOW },
+      { key: EAspirations.FabulouslyWealthy, value: WEIGHTS.LOW },
+      { key: EAspirations.MansionBaron, value: WEIGHTS.LOW },
+      { key: EAspirations.WorldFamousCelebrity, value: WEIGHTS.LOW },
+    ],
   },
   [ETraits.SociallyAwkward]: {
     requires: [EPacks.HighSchoolYears],
