@@ -4,6 +4,7 @@ import Select from "./common/select";
 import {
   AGES,
   aspirationsKeyValuePairs,
+  careersKeyValuePairs,
   TODDLER_TRAITS,
   traitsKeyValuePairs,
 } from "~/constants/sim-data";
@@ -47,6 +48,12 @@ function SimInput({
         options={aspirationsKeyValuePairs}
         fieldName={`${simKey}.aspiration`}
         cyValue={`${context}-${simKey}.aspiration`}
+      />
+      <Select
+        label="Career"
+        options={careersKeyValuePairs}
+        fieldName={`${simKey}.career`}
+        cyValue={`${context}-${simKey}.career`}
       />
     </div>
   );
