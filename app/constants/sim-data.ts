@@ -1,9 +1,11 @@
 import type {
   GenericObject,
   IAspiration,
+  ICareer,
   ISelectOptions,
   ITrait,
 } from "~/types/interfaces";
+import { ECareers } from "~/types/interfaces";
 import { EAspirations } from "~/types/interfaces";
 import { EAges, EPacks, ETraits } from "~/types/interfaces";
 import { humanizeKey } from "~/utils";
@@ -274,3 +276,75 @@ export const aspirationsKeyValuePairs = Object.keys(ASPIRATIONS).reduce(
   (acc, key) => [...acc, { name: humanizeKey(EAspirations[+key]), value: key }],
   [{ name: "---", value: "-1" }] as ISelectOptions[]
 );
+
+export const CAREERS: { [key: number]: ICareer } = {
+  [ECareers.AstronautInterstellarSmuggler]: {},
+  [ECareers.AstronautSpaceRanger]: {},
+  [ECareers.AthleteBodybuilder]: {},
+  [ECareers.AthleteProfessionalAthlete]: {},
+  [ECareers.BusinessInvestor]: {},
+  [ECareers.BusinessManagement]: {},
+  [ECareers.CriminalBoss]: {},
+  [ECareers.CriminalOracle]: {},
+  [ECareers.CulinaryChef]: {},
+  [ECareers.CulinaryMixologist]: {},
+  [ECareers.EntertainerComedian]: {},
+  [ECareers.EntertainerMusician]: {},
+  [ECareers.Freelancer]: {},
+  [ECareers.PainterMasterOfTheReal]: {},
+  [ECareers.PainterPatronOfTheArts]: {},
+  [ECareers.SecretAgentDiamondAgent]: {},
+  [ECareers.SecretAgentVillain]: {},
+  [ECareers.SelfEmployed]: {},
+  [ECareers.StyleInfluencerStylist]: {},
+  [ECareers.StyleInfluencerTrendsetter]: {},
+  [ECareers.TechGuruESportGamer]: {},
+  [ECareers.TechGuruStartUpEntrepreneur]: {},
+  [ECareers.WriterAuthor]: {},
+  [ECareers.WriterJournalist]: {},
+  [ECareers.Detective]: { requires: [EPacks.GetToWork] },
+  [ECareers.Doctor]: { requires: [EPacks.GetToWork] },
+  [ECareers.Scientist]: { requires: [EPacks.GetToWork] },
+  [ECareers.CriticArtsCritic]: { requires: [EPacks.CityLiving] },
+  [ECareers.CriticFoodCritic]: { requires: [EPacks.CityLiving] },
+  [ECareers.PoliticianCharityOrganizer]: { requires: [EPacks.CityLiving] },
+  [ECareers.PoliticianPolitician]: { requires: [EPacks.CityLiving] },
+  [ECareers.SocialMediaInternetPersonality]: { requires: [EPacks.CityLiving] },
+  [ECareers.SocialMediaPublicRelations]: { requires: [EPacks.CityLiving] },
+  [ECareers.GardenerBotanist]: { requires: [EPacks.Seasons] },
+  [ECareers.GardenerFloralDesigner]: { requires: [EPacks.Seasons] },
+  [ECareers.Actor]: { requires: [EPacks.GetFamous] },
+  [ECareers.MilitaryCovertOperator]: { requires: [EPacks.StrangerVille] },
+  [ECareers.MilitaryOfficer]: { requires: [EPacks.StrangerVille] },
+  [ECareers.ConservationistEnvironmentalManager]: {
+    requires: [EPacks.IslandLiving],
+  },
+  [ECareers.ConservationistMarineBiologist]: {
+    requires: [EPacks.IslandLiving],
+  },
+  [ECareers.EducationAdministrator]: { requires: [EPacks.DiscoverUniversity] },
+  [ECareers.EducationProfessor]: { requires: [EPacks.DiscoverUniversity] },
+  [ECareers.EngineerComputerEngineer]: {
+    requires: [EPacks.DiscoverUniversity],
+  },
+  [ECareers.EngineerMechanicalEngineer]: {
+    requires: [EPacks.DiscoverUniversity],
+  },
+  [ECareers.LawJudge]: { requires: [EPacks.DiscoverUniversity] },
+  [ECareers.LawPrivateAttorney]: { requires: [EPacks.DiscoverUniversity] },
+  [ECareers.CivilDesignerCivicPlanner]: { requires: [EPacks.EcoLifestyle] },
+  [ECareers.CivilDesignerGreenTechnician]: { requires: [EPacks.EcoLifestyle] },
+  [ECareers.SalarypersonExpert]: { requires: [EPacks.SnowyEscape] },
+  [ECareers.SalarypersonSupervisor]: { requires: [EPacks.SnowyEscape] },
+  [ECareers.InteriorDecorator]: { requires: [EPacks.DreamHomeDecorator] },
+};
+
+export const careersKeyValuePairs = Object.keys(CAREERS)
+  .reduce(
+    (acc, key) => [
+      ...acc,
+      { name: humanizeKey(EAspirations[+key]), value: key },
+    ],
+    [{ name: "---", value: "-1" }] as ISelectOptions[]
+  )
+  .sort();
