@@ -12,6 +12,7 @@ import RandomizePanel from "~/components/panels/randomize-panel";
 export async function action({ request }: ActionArgs) {
   const body = await request.formData();
   const action = body.get("_action");
+
   if (action === FORM_CONSTANTS.inherit) {
     const [leftParent, rightParent] = [
       makeSimFromBody({ simId: 1, body }),
@@ -21,11 +22,13 @@ export async function action({ request }: ActionArgs) {
     const offspring = makeChild({ sims: { leftParent, rightParent } });
     return json(offspring);
   }
+
   if (action === FORM_CONSTANTS.roll) {
     const sim = makeSimFromBody({ simId: 1, body });
     const rolledSim = rollSim({ sim });
     return json(rolledSim);
   }
+
   return null;
 }
 

@@ -19,7 +19,7 @@ function SimOutput({
   simData?: ISim;
   context: string;
 }) {
-  const traits = simData && simData.traits ? simData.traits : [];
+  const traits = simData?.traits || [];
   while (traits.length < 3) {
     traits.push(-1);
   }
@@ -49,6 +49,7 @@ function SimOutput({
         label="Aspiration"
         options={aspirationsKeyValuePairs}
         cyValue={`${context}-out.aspiration`}
+        value={`${simData?.aspiration ? simData.aspiration : -1}`}
       />
     </div>
   );

@@ -1,10 +1,10 @@
-import {
-  EAspirations,
+import type {
   GenericObject,
   IAspiration,
   ISelectOptions,
   ITrait,
 } from "~/types/interfaces";
+import { EAspirations } from "~/types/interfaces";
 import { EAges, EPacks, ETraits } from "~/types/interfaces";
 import { humanizeKey } from "~/utils";
 
