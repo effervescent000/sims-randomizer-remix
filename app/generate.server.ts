@@ -1,4 +1,4 @@
-import { EAspirations, ISim } from "./types/interfaces";
+import { EAspirations, ECareers, ISim } from "./types/interfaces";
 import { ETraits } from "./types/interfaces";
 import { EAges } from "./types/interfaces";
 
@@ -38,6 +38,7 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
   const traits = mutatedSim.traits ? filterOutNoTrait(mutatedSim.traits) : [];
   const allTraitList = getEnumList(ETraits);
   const allAspirationList = getEnumList(EAspirations);
+  const allCareerList = getEnumList(ECareers);
 
   while (traits.length < 3) {
     const selectedIndex = Math.floor(Math.random() * allTraitList.length);
@@ -59,6 +60,11 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
   if (mutatedSim.aspiration === -1) {
     const selectedIndex = Math.floor(Math.random() * allAspirationList.length);
     mutatedSim.aspiration = allAspirationList[selectedIndex];
+  }
+
+  if (mutatedSim.career === -1 || !mutatedSim.career) {
+    const selectedIndex = Math.floor(Math.random() * allCareerList.length);
+    mutatedSim.career = allCareerList[selectedIndex];
   }
 
   return mutatedSim;

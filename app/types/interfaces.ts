@@ -12,6 +12,10 @@ export interface IAspiration {
   requires?: EPacks[];
 }
 
+export interface ICareer {
+  requires?: EPacks[];
+}
+
 export interface ISelectOptions {
   name: string;
   value: string;
@@ -31,8 +35,10 @@ export enum EPacks {
   CityLiving,
   CottageLiving,
   DiscoverUniversity,
+  DreamHomeDecorator,
   EcoLifestyle,
   GetFamous,
+  GetToWork,
   GetTogether,
   HighSchoolYears,
   IslandLiving,
@@ -42,6 +48,7 @@ export enum EPacks {
   Parenthood,
   Pets,
   RealmOfMagic,
+  Seasons,
   SnowyEscape,
   SpaDay,
   StrangerVille,
@@ -184,4 +191,58 @@ export enum EAspirations {
   VampireFamily,
   WorldFamousCelebrity,
   ZenGuru,
+}
+
+export enum ECareers {
+  Actor,
+  AstronautInterstellarSmuggler,
+  AthleteBodybuilder,
+  AthleteProfessionalAthlete,
+  BusinessInvestor,
+  BusinessManagement,
+  CivilDesignerCivicPlanner,
+  CivilDesignerGreenTechnician,
+  ConservationistEnvironmentalManager,
+  ConservationistMarineBiologist,
+  CriminalBoss,
+  CriminalOracle,
+  CriticArtsCritic,
+  CriticFoodCritic,
+  CulinaryChef,
+  CulinaryMixologist,
+  Detective,
+  Doctor,
+  EducationAdministrator,
+  EducationProfessor,
+  EngineerComputerEngineer,
+  EngineerMechanicalEngineer,
+  EntertainerComedian,
+  EntertainerMusician,
+  Freelancer,
+  GardenerBotanist,
+  GardenerFloralDesigner,
+  InteriorDecorator,
+  LawJudge,
+  LawPrivateAttorney,
+  MilitaryCovertOperator,
+  MilitaryOfficer,
+  PainterMasterOfTheReal,
+  PainterPatronOfTheArts,
+  PoliticianCharityOrganizer,
+  PoliticianPolitician,
+  SalarypersonExpert,
+  SalarypersonSupervisor,
+  Scientist,
+  SecretAgentDiamondAgent,
+  SecretAgentVillain,
+  SelfEmployed,
+  SocialMediaInternetPersonality,
+  SocialMediaPublicRelations,
+  StyleInfluencerStylist,
+  StyleInfluencerTrendsetter,
+  TechGuruESportGamer,
+  TechGuruStartUpEntrepreneur,
+  WriterAuthor,
+  WriterJournalist,
+  AstronautSpaceRanger,
 }
