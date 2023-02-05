@@ -133,6 +133,7 @@ export const TRAITS: { [key: number]: ITrait } = {
   [ETraits.LovesOutdoors]: {
     conflicts: [ETraits.Squeamish],
   },
+  [ETraits.Loyal]: { minAge: EAges.Teen, conflicts: [ETraits.Noncommittal] },
   [ETraits.Maker]: {
     requires: [EPacks.EcoLifestyle],
     conflicts: [ETraits.Clumsy, ETraits.Lazy],

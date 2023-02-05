@@ -115,7 +115,7 @@ export function makeSimFromBody({
     .filter((item) => item !== null && item !== "-1")
     .map((item) => +`${item}`);
   return {
-    age: getAsNumberOrUndefined({ body, queryString: `sim-${simId}.age` }),
+    age: getAsNumberOrUndefined({ body, queryString: `sim-${simId}.age` }) || 0,
     toddlerTrait: getAsNumberOrUndefined({
       body,
       queryString: `sim-${simId}.toddlerTrait`,

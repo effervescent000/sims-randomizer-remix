@@ -37,14 +37,15 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
 
   const traits = mutatedSim.traits ? filterOutNoTrait(mutatedSim.traits) : [];
   const allTraitList = getEnumList(ETraits);
-  const allAspirationList = getEnumList(EAspirations);
-  const allCareerList = getEnumList(ECareers);
+  let filteredTraits = allTraitList.filter((key) => {
+    const trait = TRAITS[key];
+    return (trait.minAge && trait.minAge <= sim.age) || !trait.minAge;
+  });
 
   while (traits.length < 3) {
-    const selectedIndex = Math.floor(Math.random() * allTraitList.length);
+    const selectedIndex = Math.floor(Math.random() * filteredTraits.length);
 
-    const newTrait = +allTraitList[selectedIndex];
-    const traitData = TRAITS[newTrait];
+    const newTrait = +filteredTraits[selectedIndex];
     let valid = true;
 
     traits.forEach((existingTrait) => {
@@ -57,11 +58,13 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
   }
   mutatedSim.traits = traits;
 
+  const allAspirationList = getEnumList(EAspirations);
   if (mutatedSim.aspiration === -1) {
     const selectedIndex = Math.floor(Math.random() * allAspirationList.length);
     mutatedSim.aspiration = allAspirationList[selectedIndex];
   }
 
+  const allCareerList = getEnumList(ECareers);
   if (mutatedSim.career === -1 || !mutatedSim.career) {
     const selectedIndex = Math.floor(Math.random() * allCareerList.length);
     mutatedSim.career = allCareerList[selectedIndex];
