@@ -1,10 +1,10 @@
-import type { ISim } from "./types/interfaces";
+import { EAspirations, ISim } from "./types/interfaces";
 import { ETraits } from "./types/interfaces";
 import { EAges } from "./types/interfaces";
 
 import { TRAITS } from "./constants/sim-data";
 
-import { filterOutNoTrait, randomFromWeights } from "./utils";
+import { filterOutNoTrait, getEnumList, randomFromWeights } from "./utils";
 
 export function makeChild({
   sims: { leftParent, rightParent, existingChild },
@@ -33,15 +33,14 @@ export function makeChild({
 }
 
 export function rollSim({ sim }: { sim: ISim }): ISim {
-  const traits = sim.traits ? filterOutNoTrait(sim.traits) : [];
-  const allTraitList = Object.values(ETraits)
-    .filter((key) => !isNaN(+key))
-    .map((item) => +item);
-  console.log(allTraitList);
+  const mutatedSim = { ...sim };
+
+  const traits = mutatedSim.traits ? filterOutNoTrait(mutatedSim.traits) : [];
+  const allTraitList = getEnumList(ETraits);
+  const allAspirationList = getEnumList(EAspirations);
 
   while (traits.length < 3) {
     const selectedIndex = Math.floor(Math.random() * allTraitList.length);
-    console.log(selectedIndex);
 
     const newTrait = +allTraitList[selectedIndex];
     const traitData = TRAITS[newTrait];
@@ -52,8 +51,15 @@ export function rollSim({ sim }: { sim: ISim }): ISim {
         valid = false;
       }
     });
+
     if (valid) traits.push(newTrait);
   }
+  mutatedSim.traits = traits;
 
-  return { ...sim, traits };
+  if (mutatedSim.aspiration === -1) {
+    const selectedIndex = Math.floor(Math.random() * allAspirationList.length);
+    mutatedSim.aspiration = allAspirationList[selectedIndex];
+  }
+
+  return mutatedSim;
 }

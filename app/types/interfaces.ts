@@ -8,6 +8,10 @@ export interface ITrait {
   minAge?: EAges;
 }
 
+export interface IAspiration {
+  requires?: EPacks[];
+}
+
 export interface ISelectOptions {
   name: string;
   value: string;
@@ -26,16 +30,23 @@ export interface ISim {
 export enum EPacks {
   CityLiving,
   CottageLiving,
+  DiscoverUniversity,
   EcoLifestyle,
   GetFamous,
   GetTogether,
   HighSchoolYears,
   IslandLiving,
+  JungleAdventure,
+  NiftyKnitting,
   OutdoorRetreat,
+  Parenthood,
   Pets,
+  RealmOfMagic,
   SnowyEscape,
   SpaDay,
   StrangerVille,
+  Vampires,
+  Werewolves,
 }
 
 export enum EAges {
@@ -119,4 +130,58 @@ export enum ETraits {
   Squeamish,
   Vegetarian,
   Unflirty,
+}
+
+export enum EAspirations {
+  Academic,
+  AnglingAce,
+  ArchaeologyScholar,
+  BeachLife,
+  BestsellingAuthor,
+  BigHappyFamily,
+  Bodybuilder,
+  ChiefOfMischief,
+  CityNative,
+  ComputerWhiz,
+  CountryCaretaker,
+  Curator,
+  EcoInnovator,
+  ExtremeSportsEnthusiast,
+  FabulouslyFilthy,
+  FabulouslyWealthy,
+  FreelanceBotanist,
+  FriendOfTheAnimals,
+  FriendOfTheWorld,
+  GoodVampire,
+  InnerPeace,
+  JokeStar,
+  JungleExplorer,
+  LeaderOfThePack,
+  LordOfTheKnits,
+  MansionBaron,
+  MasterActor,
+  MasterChef,
+  MasterMaker,
+  MasterMixologist,
+  MasterVampire,
+  MtKomorebiSightseer,
+  MusicalGenius,
+  NerdBrain,
+  OutdoorEnthusiast,
+  PainterExtraordinaire,
+  PartyAnimal,
+  PerfectlyPristine,
+  PublicEnemy,
+  PurveyorOfPotions,
+  RenaissanceSim,
+  SelfCareSpecialist,
+  SerialRomantic,
+  Soulmate,
+  SpellcraftAndSorcery,
+  StrangerVilleMystery,
+  SuccessfulLineage,
+  SuperParent,
+  VampireFamily,
+  WorldFamousCelebrity,
+  ZenGuru,
 }

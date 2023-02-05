@@ -135,3 +135,9 @@ export function makeSimFromBody({
 export function filterOutNoTrait(traitList: number[]) {
   return traitList.filter((trait) => trait !== -1 && trait !== null);
 }
+
+export function getEnumList(e: { [key: number]: string }) {
+  return Object.values(e)
+    .filter((key) => !isNaN(+key))
+    .map((item) => +item);
+}

@@ -4,6 +4,7 @@ import type { ISim } from "~/types/interfaces";
 
 import {
   AGES,
+  aspirationsKeyValuePairs,
   TODDLER_TRAITS,
   traitsKeyValuePairs,
 } from "~/constants/sim-data";
@@ -18,7 +19,7 @@ function SimOutput({
   simData?: ISim;
   context: string;
 }) {
-  const traits = simData && simData.traits ? simData.traits : [];
+  const traits = simData?.traits || [];
   while (traits.length < 3) {
     traits.push(-1);
   }
@@ -44,6 +45,12 @@ function SimOutput({
           cyValue={`${context}-out.trait`}
         />
       ))}
+      <Select
+        label="Aspiration"
+        options={aspirationsKeyValuePairs}
+        cyValue={`${context}-out.aspiration`}
+        value={`${simData?.aspiration ? simData.aspiration : -1}`}
+      />
     </div>
   );
 }
