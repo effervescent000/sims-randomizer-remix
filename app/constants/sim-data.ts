@@ -1,4 +1,10 @@
-import type { GenericObject, ISelectOptions, ITrait } from "~/types/interfaces";
+import {
+  EAspirations,
+  GenericObject,
+  IAspiration,
+  ISelectOptions,
+  ITrait,
+} from "~/types/interfaces";
 import { EAges, EPacks, ETraits } from "~/types/interfaces";
 import { humanizeKey } from "~/utils";
 
@@ -210,5 +216,61 @@ export const TRAITS: { [key: number]: ITrait } = {
 
 export const traitsKeyValuePairs = Object.keys(TRAITS).reduce(
   (acc, key) => [...acc, { name: humanizeKey(ETraits[+key]), value: key }],
+  [{ name: "---", value: "-1" }] as ISelectOptions[]
+);
+
+export const ASPIRATIONS: { [key: number]: IAspiration } = {
+  [EAspirations.Academic]: { requires: [EPacks.DiscoverUniversity] },
+  [EAspirations.AnglingAce]: {},
+  [EAspirations.ArchaeologyScholar]: { requires: [EPacks.JungleAdventure] },
+  [EAspirations.BeachLife]: { requires: [EPacks.IslandLiving] },
+  [EAspirations.BestsellingAuthor]: {},
+  [EAspirations.BigHappyFamily]: {},
+  [EAspirations.Bodybuilder]: {},
+  [EAspirations.ChiefOfMischief]: {},
+  [EAspirations.CityNative]: { requires: [EPacks.CityLiving] },
+  [EAspirations.ComputerWhiz]: {},
+  [EAspirations.CountryCaretaker]: { requires: [EPacks.CottageLiving] },
+  [EAspirations.Curator]: {},
+  [EAspirations.EcoInnovator]: { requires: [EPacks.EcoLifestyle] },
+  [EAspirations.ExtremeSportsEnthusiast]: { requires: [EPacks.SnowyEscape] },
+  [EAspirations.FabulouslyWealthy]: {},
+  [EAspirations.FreelanceBotanist]: {},
+  [EAspirations.FriendOfTheAnimals]: { requires: [EPacks.Pets] },
+  [EAspirations.FriendOfTheWorld]: {},
+  [EAspirations.GoodVampire]: { requires: [EPacks.Vampires] },
+  [EAspirations.InnerPeace]: { requires: [EPacks.SpaDay] },
+  [EAspirations.JokeStar]: {},
+  [EAspirations.JungleExplorer]: { requires: [EPacks.JungleAdventure] },
+  [EAspirations.LeaderOfThePack]: { requires: [EPacks.GetTogether] },
+  [EAspirations.MansionBaron]: {},
+  [EAspirations.MasterActor]: { requires: [EPacks.GetFamous] },
+  [EAspirations.MasterChef]: {},
+  [EAspirations.MasterMaker]: { requires: [EPacks.EcoLifestyle] },
+  [EAspirations.MasterMixologist]: {},
+  [EAspirations.MasterVampire]: { requires: [EPacks.Vampires] },
+  [EAspirations.MtKomorebiSightseer]: { requires: [EPacks.SnowyEscape] },
+  [EAspirations.MusicalGenius]: {},
+  [EAspirations.NerdBrain]: {},
+  [EAspirations.OutdoorEnthusiast]: { requires: [EPacks.OutdoorRetreat] },
+  [EAspirations.PainterExtraordinaire]: {},
+  [EAspirations.PartyAnimal]: {},
+  [EAspirations.PublicEnemy]: {},
+  [EAspirations.PurveyorOfPotions]: { requires: [EPacks.RealmOfMagic] },
+  [EAspirations.RenaissanceSim]: {},
+  [EAspirations.SelfCareSpecialist]: { requires: [EPacks.SpaDay] },
+  [EAspirations.SerialRomantic]: {},
+  [EAspirations.Soulmate]: {},
+  [EAspirations.SpellcraftAndSorcery]: { requires: [EPacks.RealmOfMagic] },
+  [EAspirations.StrangerVilleMystery]: { requires: [EPacks.StrangerVille] },
+  [EAspirations.SuccessfulLineage]: {},
+  [EAspirations.SuperParent]: { requires: [EPacks.Parenthood] },
+  [EAspirations.VampireFamily]: { requires: [EPacks.Vampires] },
+  [EAspirations.WorldFamousCelebrity]: { requires: [EPacks.GetFamous] },
+  [EAspirations.ZenGuru]: { requires: [EPacks.SpaDay] },
+};
+
+export const aspirationsKeyValuePairs = Object.keys(ASPIRATIONS).reduce(
+  (acc, key) => [...acc, { name: humanizeKey(EAspirations[+key]), value: key }],
   [{ name: "---", value: "-1" }] as ISelectOptions[]
 );
