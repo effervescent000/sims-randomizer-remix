@@ -22,7 +22,7 @@ export interface ISelectOptions {
 }
 
 export interface ISim {
-  age?: number;
+  age: number;
   toddlerTrait?: EToddlerTraits;
   traits?: ETraits[];
   aspiration?: number;
